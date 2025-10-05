@@ -115,7 +115,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               transition={{ duration: 1, delay: 0.5 }}
               className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-200 to-teal-200 bg-clip-text text-transparent"
             >
-              VillPaddy Breeze
+              Villa Paddy Breeze
             </motion.h1>
 
             {/* Tagline */}

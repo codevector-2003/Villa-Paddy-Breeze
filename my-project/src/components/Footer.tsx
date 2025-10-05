@@ -172,18 +172,6 @@ const Footer = () => {
                 © 2024 VillPaddy Breeze. All rights reserved.
               </p>
             </div>
-
-            <div className="flex items-center text-blue-100 text-sm">
-              <span>Made with</span>
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="mx-1"
-              >
-                <Heart size={16} className="text-red-400 fill-current" />
-              </motion.div>
-              <span>for ocean and nature lovers</span>
-            </div>
           </motion.div>
         </div>
       </div>
