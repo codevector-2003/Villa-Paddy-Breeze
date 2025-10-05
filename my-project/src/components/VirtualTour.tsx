@@ -246,7 +246,10 @@ export default function VirtualTour() {
             <Button
               variant={!showDroneView ? "default" : "ghost"}
               onClick={() => setShowDroneView(false)}
-              className="mr-2"
+              className={`mr-2 ${!showDroneView
+                  ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
+                  : ""
+                }`}
             >
               <Eye className="w-4 h-4 mr-2" />
               360° Interior Tour
@@ -254,6 +257,10 @@ export default function VirtualTour() {
             <Button
               variant={showDroneView ? "default" : "ghost"}
               onClick={toggleDroneView}
+              className={`${showDroneView
+                  ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
+                  : ""
+                }`}
             >
               <Navigation className="w-4 h-4 mr-2" />
               Drone Footage
@@ -322,7 +329,10 @@ export default function VirtualTour() {
                       key={location.id}
                       variant={currentLocation === location.id ? "default" : "outline"}
                       onClick={() => handleLocationChange(location.id)}
-                      className="flex items-center gap-2"
+                      className={`flex items-center gap-2 ${currentLocation === location.id
+                        ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
+                        : ""
+                        }`}
                     >
                       <IconComponent className="w-4 h-4" />
                       {location.name}

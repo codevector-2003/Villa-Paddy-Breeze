@@ -35,7 +35,7 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-5xl md:text-7xl mb-6 bg-gradient-to-r from-blue-200 to-teal-200 bg-clip-text text-transparent"
         >
-          VillPaddy Breeze
+          Villa Paddy Breeze
         </motion.h1>
 
         <motion.p

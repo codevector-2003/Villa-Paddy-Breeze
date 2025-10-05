@@ -169,7 +169,7 @@ const Footer = () => {
           >
             <div className="flex items-center mb-4 md:mb-0">
               <p className="text-blue-100 text-sm">
-                © 2024 VillPaddy Breeze. All rights reserved.
+                © 2024 Villa Paddy Breeze. All rights reserved.
               </p>
             </div>
           </motion.div>
