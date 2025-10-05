@@ -13,6 +13,7 @@ import LocationSection from './components/LocationSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import ContactBooking from './components/ContactBooking';
 import Footer from './components/Footer';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
