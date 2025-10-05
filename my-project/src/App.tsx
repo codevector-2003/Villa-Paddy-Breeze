@@ -64,6 +64,7 @@ export default function App() {
         <LocationSection />
         <TestimonialsSection />
         <ContactBooking />
+        <SpeedInsights />
       </main>
 
       {/* Footer */}
