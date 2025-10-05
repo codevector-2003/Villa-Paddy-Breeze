@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Instagram, Facebook, Twitter, Youtube, Heart, Waves } from 'lucide-react';
+import { Instagram, Facebook, Twitter, Youtube, Waves } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [

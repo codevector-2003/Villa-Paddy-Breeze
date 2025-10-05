@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Play, Pause, RotateCw, Eye, Home, Bed, Bath, Waves, Navigation } from 'lucide-react';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
@@ -89,10 +89,10 @@ function PanoramicViewer({ image, hotspots = [], onHotspotClick }: PanoramicView
   const [isDragging, setIsDragging] = useState(false);
   const [lastX, setLastX] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
 
   // Memoized rotation function to prevent excessive re-renders
-  const rotateAnimation = useCallback(() => {
+  const rotateAnimation = useCallback((_timestamp?: number) => {
     setRotation(prev => (prev + 0.2) % 360);
     if (isRotating && !isDragging) {
       animationRef.current = requestAnimationFrame(rotateAnimation);
@@ -247,8 +247,8 @@ export default function VirtualTour() {
               variant={!showDroneView ? "default" : "ghost"}
               onClick={() => setShowDroneView(false)}
               className={`mr-2 ${!showDroneView
-                  ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
-                  : ""
+                ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
+                : ""
                 }`}
             >
               <Eye className="w-4 h-4 mr-2" />
@@ -258,8 +258,8 @@ export default function VirtualTour() {
               variant={showDroneView ? "default" : "ghost"}
               onClick={toggleDroneView}
               className={`${showDroneView
-                  ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
-                  : ""
+                ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
+                : ""
                 }`}
             >
               <Navigation className="w-4 h-4 mr-2" />
