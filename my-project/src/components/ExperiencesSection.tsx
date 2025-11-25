@@ -34,7 +34,7 @@ const ExperiencesSection = () => {
   ];
 
   return (
-    <section id="experiences" className="py-20 bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+    <section id="experiences" className="py-20 bg-gradient-to-br from-[#f7f3ee] via-[#e8e4d9] to-[#d8ebe8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

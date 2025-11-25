@@ -89,14 +89,14 @@ const ImageGallery = () => {
   };
 
   return (
-    <section id="gallery" className="py-20 bg-white">
+    <section id="gallery" className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <h2 className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-800 to-teal-600 bg-clip-text text-transparent">
             Gallery
@@ -107,7 +107,7 @@ const ImageGallery = () => {
         </motion.div>
 
         {/* Main Carousel */}
-        <div className="relative overflow-hidden rounded-2xl shadow-2xl mb-8">
+        <div className="relative overflow-hidden rounded-2xl shadow-2xl mb-6">
           <div
             className="flex transition-transform duration-1000 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -115,7 +115,7 @@ const ImageGallery = () => {
             {images.map((image, index) => (
               <div key={index} className="w-full flex-shrink-0 relative">
                 <div
-                  className="relative h-96 md:h-[600px] cursor-pointer group"
+                  className="relative h-64 md:h-96 cursor-pointer group"
                   onClick={() => openLightbox(index)}
                 >
                   <ImageWithFallback

@@ -54,18 +54,25 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-gradient-to-r from-blue-900/90 to-teal-800/90 backdrop-blur-md shadow-lg"
-          : "bg-gradient-to-r from-blue-900/50 to-teal-800/50"
+        ? "bg-gradient-to-r from-stone-900/95 to-stone-800/95 backdrop-blur-md shadow-lg"
+        : "bg-gradient-to-r from-stone-900/70 to-stone-800/70"
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <motion.div
-            className="text-white cursor-pointer"
+            className="flex items-center gap-3 cursor-pointer"
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection("#hero")}
           >
-            Villa Paddy Breeze
+            <img
+              src="/Villa Paddy Breez_Final Logo.png"
+              alt="Villa Paddy Breeze Logo"
+              className="h-14 w-auto"
+            />
+            <span className="text-amber-100 font-semibold text-lg hidden sm:inline">
+              Villa Paddy Breeze
+            </span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -75,11 +82,11 @@ const Navbar = () => {
                 <motion.button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-white hover:text-teal-200 px-3 py-2 text-sm relative group"
+                  className="text-white hover:text-amber-200 px-3 py-2 text-sm relative group"
                   whileHover={{ scale: 1.05 }}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-200 group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-200 group-hover:w-full transition-all duration-300"></span>
                 </motion.button>
               ))}
             </div>
@@ -91,7 +98,7 @@ const Navbar = () => {
               onClick={() =>
                 setIsMobileMenuOpen(!isMobileMenuOpen)
               }
-              className="text-white hover:text-teal-200 p-2"
+              className="text-white hover:text-amber-200 p-2"
             >
               {isMobileMenuOpen ? (
                 <X size={24} />
@@ -111,12 +118,12 @@ const Navbar = () => {
           }}
           className="md:hidden overflow-hidden"
         >
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-blue-900/90 rounded-b-lg">
+          <div className="px-2 pt-2 pb-3 space-y-1 bg-stone-800/95 rounded-b-lg">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-white hover:text-teal-200 block px-3 py-2 text-base w-full text-left"
+                className="text-white hover:text-amber-200 block px-3 py-2 text-base w-full text-left"
               >
                 {item.name}
               </button>
