@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Waves, Wind, Utensils, Wifi, Car, Trees } from 'lucide-react';
+import { Wind, Utensils, Wifi, Car, Trees } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 const RoomsAmenities = () => {
@@ -28,11 +28,11 @@ const RoomsAmenities = () => {
   ];
 
   const amenities = [
-    { icon: Waves, name: "Infinity Pool", color: "from-blue-500 to-blue-600" },
+    { icon: Utensils, name: "Private Kitchen", color: "from-blue-500 to-blue-600" },
     { icon: Wind, name: "Air Conditioning", color: "from-teal-500 to-teal-600" },
     { icon: Utensils, name: "Fine Dining", color: "from-green-500 to-green-600" },
     { icon: Wifi, name: "High-Speed WiFi", color: "from-blue-600 to-teal-600" },
-    { icon: Car, name: "Private Transport", color: "from-teal-600 to-green-600" },
+    { icon: Car, name: "Private Parking", color: "from-teal-600 to-green-600" },
     { icon: Trees, name: "Garden Access", color: "from-green-600 to-blue-600" }
   ];
 

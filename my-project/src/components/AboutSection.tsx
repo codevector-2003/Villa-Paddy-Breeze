@@ -7,7 +7,7 @@ const AboutSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="about" ref={ref} className="py-20 bg-gradient-to-b from-green-50 via-emerald-50 to-teal-50">
+    <section id="about" ref={ref} className="py-20 bg-gradient-to-b from-[#f7f3ee] via-[#e8e4d9] to-[#d8ebe8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
@@ -33,7 +33,7 @@ const AboutSection = () => {
               className="text-gray-700 text-lg leading-relaxed"
             >
               Nestled between the endless blue of the ocean and the emerald green of ancient rice paddies,
-              VillPaddy Breeze offers a unique sanctuary where luxury meets nature's untouched beauty.
+              Villa Paddy Breeze offers a unique sanctuary where luxury meets nature's untouched beauty.
             </motion.p>
 
             <motion.p

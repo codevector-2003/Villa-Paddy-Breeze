@@ -19,7 +19,7 @@ const HeroSection = () => {
         animate={{ scale: 1 }}
         transition={{ duration: 8, ease: "easeOut" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/40 to-teal-800/60 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/50 to-stone-800/70 z-10"></div>
         <ImageWithFallback
           src="https://images.unsplash.com/photo-1605352081508-2e09927ecfe3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMG9jZWFuJTIwcGFkZHklMjBmaWVsZHN8ZW58MXx8fHwxNzU5Mzg1Nzk3fDA&ixlib=rb-4.1.0&q=80&w=1080"
           alt="Luxury villa overlooking ocean and paddy fields"
@@ -29,11 +29,23 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-20 text-center text-white px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="flex justify-center mb-2"
+        >
+          <img
+            src="/Villa Paddy Breez_Final Logo.png"
+            alt="Villa Paddy Breeze Logo"
+            className="h-48 md:h-64 lg:h-80 w-auto drop-shadow-2xl"
+          />
+        </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="text-5xl md:text-7xl mb-6 bg-gradient-to-r from-blue-200 to-teal-200 bg-clip-text text-transparent"
+          className="text-5xl md:text-7xl mb-6 bg-gradient-to-r from-amber-200 to-cyan-200 bg-clip-text text-transparent -mt-4"
         >
           Villa Paddy Breeze
         </motion.h1>
@@ -55,7 +67,7 @@ const HeroSection = () => {
           <Button
             onClick={scrollToContact}
             size="lg"
-            className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+            className="bg-gradient-to-r from-amber-600 to-cyan-700 hover:from-amber-700 hover:to-cyan-800 text-white px-8 py-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
           >
             Book Now
           </Button>
@@ -64,7 +76,7 @@ const HeroSection = () => {
 
       {/* Floating elements for added depth */}
       <motion.div
-        className="absolute top-1/4 left-10 w-20 h-20 bg-teal-400/20 rounded-full blur-xl"
+        className="absolute top-1/4 left-10 w-20 h-20 bg-cyan-400/20 rounded-full blur-xl"
         animate={{
           y: [0, -20, 0],
           opacity: [0.3, 0.6, 0.3]
@@ -77,7 +89,7 @@ const HeroSection = () => {
       />
 
       <motion.div
-        className="absolute bottom-1/4 right-10 w-32 h-32 bg-blue-400/20 rounded-full blur-2xl"
+        className="absolute bottom-1/4 right-10 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl"
         animate={{
           y: [0, 20, 0],
           opacity: [0.2, 0.5, 0.2]

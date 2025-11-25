@@ -159,7 +159,7 @@ function PanoramicViewer({ image, hotspots = [], onHotspotClick }: PanoramicView
         {hotspots.map((hotspot, index) => (
           <button
             key={`hotspot-${index}`}
-            className="absolute w-8 h-8 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full border-4 border-white shadow-lg hover:scale-110 transition-transform z-10 flex items-center justify-center group"
+            className="absolute w-8 h-8 bg-gradient-to-r from-[#87715F] to-[#7a9ca5] rounded-full border-4 border-white shadow-lg hover:scale-110 transition-transform z-10 flex items-center justify-center group"
             style={{
               left: `${hotspot.x}%`,
               top: `${hotspot.y}%`,
@@ -247,7 +247,7 @@ export default function VirtualTour() {
               variant={!showDroneView ? "default" : "ghost"}
               onClick={() => setShowDroneView(false)}
               className={`mr-2 ${!showDroneView
-                ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
+                ? "bg-[#87715F] hover:bg-[#6b5d4f] text-white border-[#87715F]"
                 : ""
                 }`}
             >
@@ -258,7 +258,7 @@ export default function VirtualTour() {
               variant={showDroneView ? "default" : "ghost"}
               onClick={toggleDroneView}
               className={`${showDroneView
-                ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
+                ? "bg-[#87715F] hover:bg-[#6b5d4f] text-white border-[#87715F]"
                 : ""
                 }`}
             >
@@ -330,7 +330,7 @@ export default function VirtualTour() {
                       variant={currentLocation === location.id ? "default" : "outline"}
                       onClick={() => handleLocationChange(location.id)}
                       className={`flex items-center gap-2 ${currentLocation === location.id
-                        ? "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
+                        ? "bg-[#87715F] hover:bg-[#6b5d4f] text-white border-[#87715F]"
                         : ""
                         }`}
                     >
@@ -373,7 +373,7 @@ export default function VirtualTour() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-gradient-to-r from-[#87715F] to-[#7a9ca5] rounded-full flex items-center justify-center mx-auto mb-4">
               <Eye className="w-8 h-8 text-white" />
             </div>
             <h4 className="mb-2">360° Views</h4>
@@ -381,7 +381,7 @@ export default function VirtualTour() {
           </div>
 
           <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-gradient-to-r from-[#7a9ca5] to-[#87715F] rounded-full flex items-center justify-center mx-auto mb-4">
               <Navigation className="w-8 h-8 text-white" />
             </div>
             <h4 className="mb-2">Aerial Footage</h4>
@@ -389,7 +389,7 @@ export default function VirtualTour() {
           </div>
 
           <div className="text-center">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-gradient-to-r from-[#87715F] to-[#7a9ca5] rounded-full flex items-center justify-center mx-auto mb-4">
               <Home className="w-8 h-8 text-white" />
             </div>
             <h4 className="mb-2">Seamless Navigation</h4>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Phone, Mail, MapPin, Calendar, Users, MessageCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
@@ -30,46 +31,81 @@ const ContactBooking = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      // EmailJS configuration - Temporarily hardcoded for testing
+      const serviceId = 'service_gvdq1bh';
+      const templateId = 'template_rzutilh';
+      const publicKey = 'qYaV2SxVWLklCeKoq';
 
-    toast.success("Booking inquiry sent successfully! We'll get back to you within 24 hours.");
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      checkIn: '',
-      checkOut: '',
-      guests: '',
-      message: ''
-    });
-    setIsSubmitting(false);
+      // Debug: Log the values (remove in production)
+      console.log('EmailJS Config:', { serviceId, templateId, publicKey });
+
+      // Template parameters matching your form data
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || 'Not provided',
+        check_in: formData.checkIn || 'Not specified',
+        check_out: formData.checkOut || 'Not specified',
+        guests: formData.guests || 'Not specified',
+        message: formData.message || 'No message',
+      };
+
+      console.log('Sending email with params:', templateParams);
+
+      // Send email via EmailJS
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      console.log('EmailJS Success:', response);
+      toast.success("Booking inquiry sent successfully! We'll get back to you within 24 hours.");
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        checkIn: '',
+        checkOut: '',
+        guests: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast.error('Failed to send booking inquiry. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: Phone,
       title: "Phone",
-      details: ["+62 123 456 7890", "24/7 Concierge Service"],
+      details: ["+94 72 150 2942", "24/7 Concierge Service"],
       color: "from-blue-500 to-blue-600"
     },
     {
       icon: Mail,
       title: "Email",
-      details: ["hello@villpaddybreeze.com", "booking@villpaddybreeze.com"],
+      details: ["info@villapaddybreeze.com", "villapaddybreeze@gmail.com"],
       color: "from-teal-500 to-teal-600"
     },
     {
       icon: MapPin,
       title: "Location",
-      details: ["Jimbaran Bay Area", "Bali, Indonesia"],
+      details: ["N0.34  Rupeewala Boossa", "Galle, Sri Lanka"],
       color: "from-green-500 to-green-600"
     }
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 pb-0 bg-gradient-to-b from-[#f7f3ee] via-[#e8e4d9] to-[#d8ebe8]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +128,7 @@ const ContactBooking = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 rounded-2xl p-8 shadow-xl"
+            className="bg-gradient-to-br from-[#f7f3ee] via-[#e8e4d9] to-[#d8ebe8] rounded-2xl p-8 shadow-xl"
           >
             <h3 className="text-2xl mb-6 text-gray-800">Book Your Stay</h3>
 
@@ -312,6 +348,85 @@ const ContactBooking = () => {
             </motion.div>
           </motion.div>
         </div>
+
+        {/* Available On Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-16 text-center"
+        >
+          <h3 className="text-2xl md:text-3xl mb-8 bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent font-semibold">
+            We are available on
+          </h3>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 flex-wrap">
+            {/* Booking.com */}
+            <motion.a
+              href="https://www.booking.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 w-40 h-24 flex items-center justify-center"
+            >
+              <img
+                src="/booking-com-seeklogo.png"
+                alt="Booking.com"
+                className="max-w-full max-h-full object-contain"
+              />
+            </motion.a>
+
+            {/* Agoda */}
+            <motion.a
+              href="https://www.agoda.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 w-40 h-24 flex items-center justify-center"
+            >
+              <img
+                src="/Agoda_transparent_logo.png"
+                alt="Agoda"
+                className="max-w-full max-h-full object-contain"
+              />
+            </motion.a>
+
+            {/* GetYourGuide */}
+            <motion.a
+              href="https://www.getyourguide.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 w-40 h-24 flex items-center justify-center"
+            >
+              <img
+                src="/get-your-guide-seeklogo.png"
+                alt="GetYourGuide"
+                className="max-w-full max-h-full object-contain"
+              />
+            </motion.a>
+
+            {/* TripAdvisor */}
+            <motion.a
+              href="https://www.tripadvisor.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 w-40 h-24 flex items-center justify-center"
+            >
+              <img
+                src="/trip-advisor-seeklogo.png"
+                alt="TripAdvisor"
+                className="max-w-full max-h-full object-contain"
+              />
+            </motion.a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

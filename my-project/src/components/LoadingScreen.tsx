@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Waves } from 'lucide-react';
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -35,14 +34,14 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-50 bg-gradient-to-br from-blue-900 via-teal-800 to-blue-900 flex items-center justify-center"
+          className="fixed inset-0 z-50 bg-gradient-to-br from-stone-50 via-amber-50 to-cyan-50 flex items-center justify-center"
         >
           {/* Animated Background */}
           <div className="absolute inset-0 overflow-hidden">
             {[...Array(6)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute bg-white/5 rounded-full"
+                className="absolute bg-stone-400/10 rounded-full"
                 style={{
                   width: `${100 + i * 50}px`,
                   height: `${100 + i * 50}px`,
@@ -66,45 +65,48 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           </div>
 
           {/* Main Content */}
-          <div className="relative text-center text-white">
-            {/* Logo/Icon Animation */}
+          <div className="relative text-center">
+            {/* Logo Animation */}
             <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
+              initial={{ scale: 0, rotate: -180, opacity: 0 }}
+              animate={{ scale: 1, rotate: 0, opacity: 1 }}
               transition={{ duration: 1, ease: "easeOut" }}
               className="mb-8"
             >
-              <div className="relative w-24 h-24 mx-auto">
+              <div className="relative w-48 h-48 mx-auto flex items-center justify-center">
                 {/* Outer Ring */}
                 <motion.div
-                  className="absolute inset-0 border-4 border-blue-300/30 rounded-full"
+                  className="absolute inset-0 border-4 border-amber-300/30 rounded-full"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 />
 
                 {/* Inner Ring */}
                 <motion.div
-                  className="absolute inset-2 border-4 border-teal-300/50 rounded-full"
+                  className="absolute inset-2 border-4 border-stone-400/50 rounded-full"
                   animate={{ rotate: -360 }}
                   transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
                 />
 
-                {/* Center Icon */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.7, 1, 0.7]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <Waves size={32} className="text-blue-200" />
-                  </motion.div>
-                </div>
+                {/* Logo */}
+                <motion.div
+                  className="relative z-10"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    opacity: [0.9, 1, 0.9]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <img
+                    src="/Villa Paddy Breez_Final Logo.png"
+                    alt="Villa Paddy Breeze Logo"
+                    className="w-32 h-32 object-contain"
+                  />
+                </motion.div>
               </div>
             </motion.div>
 
@@ -113,7 +115,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-200 to-teal-200 bg-clip-text text-transparent"
+              className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-stone-700 to-cyan-700 bg-clip-text text-transparent font-bold"
             >
               Villa Paddy Breeze
             </motion.h1>
@@ -123,7 +125,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 1 }}
-              className="text-lg md:text-xl mb-8 text-blue-100"
+              className="text-lg md:text-xl mb-8 text-stone-600"
             >
               Where the Sea Meets the Fields
             </motion.p>
@@ -137,9 +139,9 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             >
               {/* Progress Container */}
               <div className="relative">
-                <div className="w-full h-2 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
+                <div className="w-full h-2 bg-stone-300/50 rounded-full overflow-hidden backdrop-blur-sm">
                   <motion.div
-                    className="h-full bg-gradient-to-r from-blue-400 to-teal-400 rounded-full shadow-lg"
+                    className="h-full bg-gradient-to-r from-amber-500 to-cyan-600 rounded-full shadow-lg"
                     initial={{ width: 0 }}
                     animate={{ width: `${progress}%` }}
                     transition={{ duration: 0.1 }}
@@ -148,7 +150,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 
                 {/* Progress Text */}
                 <motion.div
-                  className="mt-3 text-blue-200 text-sm"
+                  className="mt-3 text-stone-600 text-sm font-medium"
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -162,7 +164,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 2 }}
-              className="mt-8 text-xs text-blue-300"
+              className="mt-8 text-xs text-stone-500"
             >
               {progress < 30 && "Preparing ocean views..."}
               {progress >= 30 && progress < 60 && "Setting up rice paddy scenes..."}
@@ -181,7 +183,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             {[...Array(3)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute top-1/2 left-1/2 w-4 h-4 border border-white/20 rounded-full"
+                className="absolute top-1/2 left-1/2 w-4 h-4 border border-amber-400/30 rounded-full"
                 style={{ marginLeft: '-8px', marginTop: '-8px' }}
                 animate={{
                   scale: [1, 20, 1],
