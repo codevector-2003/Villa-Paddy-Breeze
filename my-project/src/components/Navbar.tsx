@@ -53,15 +53,15 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${isScrolled
         ? "bg-gradient-to-r from-stone-900/95 to-stone-800/95 backdrop-blur-md shadow-lg"
         : "bg-gradient-to-r from-stone-900/70 to-stone-800/70"
         }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex items-center justify-between h-16 w-full">
           <motion.div
-            className="flex items-center gap-3 cursor-pointer"
+            className="flex items-center gap-3 cursor-pointer shrink-0"
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection("#hero")}
           >
@@ -93,12 +93,13 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden shrink-0">
             <button
               onClick={() =>
                 setIsMobileMenuOpen(!isMobileMenuOpen)
               }
-              className="text-white hover:text-amber-200 p-2"
+              className="text-white hover:text-amber-200 p-2 flex items-center justify-center"
+              aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
                 <X size={24} />

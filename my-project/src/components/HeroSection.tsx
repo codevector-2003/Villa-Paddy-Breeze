@@ -21,8 +21,8 @@ const HeroSection = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/50 to-stone-800/70 z-10"></div>
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1605352081508-2e09927ecfe3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMG9jZWFuJTIwcGFkZHklMjBmaWVsZHN8ZW58MXx8fHwxNzU5Mzg1Nzk3fDA&ixlib=rb-4.1.0&q=80&w=1080"
-          alt="Luxury villa overlooking ocean and paddy fields"
+          src="/Final/DRW07768.jpg"
+          alt="Villa Paddy Breeze"
           className="w-full h-full object-cover"
         />
       </motion.div>

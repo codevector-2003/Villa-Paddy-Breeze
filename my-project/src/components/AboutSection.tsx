@@ -42,7 +42,7 @@ const AboutSection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-gray-700 text-lg leading-relaxed"
             >
-              Our villa is more than just accommodation—it's a gateway to experiencing the harmony between
+              Our villa is more than just accommodation it's a gateway to experiencing the harmony between
               traditional agricultural landscapes and coastal serenity. Wake up to the sound of gentle waves
               and the whisper of rice stalks dancing in the morning breeze.
             </motion.p>
@@ -68,8 +68,8 @@ const AboutSection = () => {
           >
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <ImageWithFallback
-                src="https://images.unsplash.com/photo-1650656184425-62806eaeac4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzU5Mzg1Nzk4fDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Luxury villa living room"
+                src="/Final/DRW07704.jpg"
+                alt="Villa Paddy Breeze"
                 className="w-full h-96 object-cover transform hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
