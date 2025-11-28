@@ -24,7 +24,6 @@ const HeroSection = () => {
           src="/Final-webp/DRW07768.webp"
           alt="Villa Paddy Breeze"
           className="w-full h-full object-cover"
-          priority={true}
         />
       </motion.div>
 
