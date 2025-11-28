@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X, Play, Pause } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 const ImageGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const intervalRef = useRef<number | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // First 5 selected images for carousel
   const featuredImages = [
@@ -38,34 +38,57 @@ const ImageGallery = () => {
 
   // Auto-slide effect
   useEffect(() => {
-    if (isAutoPlaying && !isLightboxOpen) {
-      intervalRef.current = window.setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % featuredImages.length);
-      }, 4500);
-    } else if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
+    intervalRef.current = window.setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % featuredImages.length);
+    }, 4500);
 
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isAutoPlaying, isLightboxOpen]);
+  }, [currentIndex]);
 
-  const toggleAutoPlay = () => {
-    setIsAutoPlaying(!isAutoPlaying);
-  };
+  // Sync scroll position with currentIndex
+  useEffect(() => {
+    if (carouselRef.current) {
+      const container = carouselRef.current;
+      const scrollLeft = currentIndex * container.offsetWidth;
+
+      // Use requestAnimationFrame for smoother transitions
+      requestAnimationFrame(() => {
+        container.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth'
+        });
+      });
+    }
+  }, [currentIndex]);
+
+  // Keyboard support for lightbox
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isLightboxOpen) return;
+
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowLeft') {
+        prevLightboxImage();
+      } else if (e.key === 'ArrowRight') {
+        nextLightboxImage();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, lightboxIndex]);
 
   const nextImage = () => {
     setCurrentIndex((prev) => (prev + 1) % featuredImages.length);
-    setIsAutoPlaying(false);
   };
 
   const prevImage = () => {
     setCurrentIndex((prev) => (prev - 1 + featuredImages.length) % featuredImages.length);
-    setIsAutoPlaying(false);
   };
 
   const openLightbox = (index: number) => {
@@ -110,7 +133,7 @@ const ImageGallery = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-6"
         >
-          <h2 className="text-4xl md:text-5xl mb-2 bg-gradient-to-r from-blue-800 to-teal-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl mb-2 bg-linear-to-r from-blue-800 to-teal-600 bg-clip-text text-transparent">
             Gallery
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -118,30 +141,28 @@ const ImageGallery = () => {
           </p>
         </motion.div>
 
-        {/* Main Carousel */}
-        <div className="relative overflow-hidden rounded-2xl shadow-2xl mb-6 max-w-4xl mx-auto">
+        {/* Main Carousel - Lightweight CSS Scroll Snap */}
+        <div className="relative rounded-2xl shadow-2xl mb-6 max-w-4xl mx-auto overflow-hidden">
           <div
-            className="flex transition-transform duration-700 ease-out will-change-transform"
-            style={{ transform: `translateX(-${currentIndex * 100}%)`, backfaceVisibility: 'hidden' }}
+            ref={carouselRef}
+            className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {featuredImages.map((image, index) => (
-              <div key={index} className="w-full shrink-0 relative">
+              <div
+                key={index}
+                className="w-full shrink-0 snap-center snap-always"
+              >
                 <div
-                  className="relative h-64 md:h-80 cursor-pointer group"
+                  className="relative h-64 md:h-80 cursor-pointer"
                   onClick={() => openLightbox(index)}
                 >
                   <ImageWithFallback
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    priority={true}
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="bg-white/90 text-gray-900 px-6 py-3 rounded-full font-medium shadow-lg">
-                      Click here to view full image
-                    </span>
-                  </div>
+                  <div className="absolute inset-0 bg-black/20" />
                 </div>
               </div>
             ))}
@@ -150,25 +171,31 @@ const ImageGallery = () => {
           {/* Navigation Arrows */}
           <button
             onClick={prevImage}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 text-white transition-all duration-300"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 text-white transition-colors"
+            aria-label="Previous image"
           >
             <ChevronLeft size={24} />
           </button>
           <button
             onClick={nextImage}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 text-white transition-all duration-300"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 text-white transition-colors"
+            aria-label="Next image"
           >
             <ChevronRight size={24} />
           </button>
 
-          {/* Auto-play Control */}
-          <button
-            onClick={toggleAutoPlay}
-            className="absolute bottom-4 right-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 text-white transition-all duration-300"
-            title={isAutoPlaying ? 'Pause auto-slide' : 'Resume auto-slide'}
-          >
-            {isAutoPlaying ? <Pause size={20} /> : <Play size={20} />}
-          </button>
+          {/* Dot Indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {featuredImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all ${index === currentIndex ? 'bg-white w-6' : 'bg-white/50'
+                  }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Thumbnail Navigation - Show only 5 images */}
@@ -179,10 +206,7 @@ const ImageGallery = () => {
             return (
               <button
                 key={index}
-                onClick={() => {
-                  setCurrentIndex(index);
-                  setIsAutoPlaying(false);
-                }}
+                onClick={() => setCurrentIndex(index)}
                 className={`shrink-0 w-20 h-24 rounded-lg overflow-hidden border-2 transition-all duration-500 ${offset === 0 ? 'border-blue-500 scale-110 shadow-xl' : 'border-transparent hover:border-blue-300 opacity-70 hover:opacity-100'
                   }`}
               >
@@ -190,7 +214,6 @@ const ImageGallery = () => {
                   src={image.src}
                   alt={image.alt}
                   className="w-full h-full object-cover"
-                  priority={true}
                 />
               </button>
             );
@@ -201,7 +224,7 @@ const ImageGallery = () => {
         <div className="flex justify-center mt-6">
           <button
             onClick={() => setIsGalleryModalOpen(true)}
-            className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            className="bg-linear-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           >
             See All Images ({allImages.length})
           </button>
@@ -265,12 +288,17 @@ const ImageGallery = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-[60] flex items-center justify-center p-4"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/90 z-60 flex items-center justify-center p-4"
             onClick={closeLightbox}
           >
             <button
-              onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
+              onClick={(e) => {
+                e.stopPropagation();
+                closeLightbox();
+              }}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 p-2 rounded-full hover:bg-white/10 transition-colors"
+              aria-label="Close"
             >
               <X size={32} />
             </button>
@@ -280,7 +308,8 @@ const ImageGallery = () => {
                 e.stopPropagation();
                 prevLightboxImage();
               }}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 p-2 rounded-full hover:bg-white/10 transition-colors"
+              aria-label="Previous image"
             >
               <ChevronLeft size={48} />
             </button>
@@ -290,7 +319,8 @@ const ImageGallery = () => {
                 e.stopPropagation();
                 nextLightboxImage();
               }}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-10 p-2 rounded-full hover:bg-white/10 transition-colors"
+              aria-label="Next image"
             >
               <ChevronRight size={48} />
             </button>
