@@ -68,7 +68,7 @@ const AboutSection = () => {
           >
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <ImageWithFallback
-                src="/Final/DRW07704.jpg"
+                src="/Final-webp/DRW07704.webp"
                 alt="Villa Paddy Breeze"
                 className="w-full h-96 object-cover transform hover:scale-105 transition-transform duration-700"
               />

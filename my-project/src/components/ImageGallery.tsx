@@ -13,24 +13,27 @@ const ImageGallery = () => {
 
   // First 5 selected images for carousel
   const featuredImages = [
-    { src: "/Final/DRW07703.jpg", alt: "Villa Paddy Breeze" },
-    { src: "/Final/DRW07641.jpg", alt: "Villa Paddy Breeze" },
-    { src: "/Final/DRW07723.jpg", alt: "Villa Paddy Breeze" },
-    { src: "/Final/DRW07744.jpg", alt: "Villa Paddy Breeze" },
-    { src: "/Final/DRW07541.jpg", alt: "Villa Paddy Breeze" }
+    { src: "/Final-webp/DRW07703.webp", alt: "Villa Paddy Breeze" },
+    { src: "/Final-webp/DRW07641.webp", alt: "Villa Paddy Breeze" },
+    { src: "/Final-webp/DRW07723.webp", alt: "Villa Paddy Breeze" },
+    { src: "/Final-webp/DRW07744.webp", alt: "Villa Paddy Breeze" },
+    { src: "/Final-webp/DRW07541.webp", alt: "Villa Paddy Breeze" },
+    { src: "/Final-webp/DRW07627.webp", alt: "Villa Paddy Breeze" }
+
   ];
 
   // All images for the gallery modal
   const allImages = [
-    "/Final/DRW07494.jpg", "/Final/DRW07509.jpg", "/Final/DRW07534.jpg",
-    "/Final/DRW07541.jpg", "/Final/DRW07542.jpg", "/Final/DRW07546.jpg",
-    "/Final/DRW07572.jpg", "/Final/DRW07576.jpg", "/Final/DRW07599.jpg",
-    "/Final/DRW07625.jpg", "/Final/DRW07641.jpg", "/Final/DRW07646.jpg",
-    "/Final/DRW07678.jpg", "/Final/DRW07681.jpg", "/Final/DRW07690.jpg",
-    "/Final/DRW07700.jpg", "/Final/DRW07703.jpg", "/Final/DRW07704.jpg",
-    "/Final/DRW07714.jpg", "/Final/DRW07715.jpg", "/Final/DRW07723.jpg",
-    "/Final/DRW07731.jpg", "/Final/DRW07737.jpg", "/Final/DRW07744.jpg",
-    "/Final/DRW07758.jpg", "/Final/DRW07768.jpg", "/Final/DRW07813.jpg"
+    "/Final-webp/DRW07494.webp", "/Final-webp/DRW07509.webp", "/Final-webp/DRW07534.webp",
+    "/Final-webp/DRW07541.webp", "/Final-webp/DRW07542.webp", "/Final-webp/DRW07546.webp",
+    "/Final-webp/DRW07572.webp", "/Final-webp/DRW07576.webp", "/Final-webp/DRW07599.webp",
+    "/Final-webp/DRW07625.webp", "/Final-webp/DRW07641.webp", "/Final-webp/DRW07646.webp",
+    "/Final-webp/DRW07678.webp", "/Final-webp/DRW07681.webp", "/Final-webp/DRW07690.webp",
+    "/Final-webp/DRW07700.webp", "/Final-webp/DRW07703.webp", "/Final-webp/DRW07704.webp",
+    "/Final-webp/DRW07714.webp", "/Final-webp/DRW07715.webp", "/Final-webp/DRW07723.webp",
+    "/Final-webp/DRW07731.webp", "/Final-webp/DRW07737.webp", "/Final-webp/DRW07744.webp",
+    "/Final-webp/DRW07758.webp", "/Final-webp/DRW07768.webp", "/Final-webp/DRW07813.webp",
+    "/Final-webp/DRW07627.webp", "/Final-webp/DRW07513.webp", "/Final-webp/DRW07491.webp"
   ].map(src => ({ src, alt: "Villa Paddy Breeze" }));
 
   // Auto-slide effect
@@ -131,6 +134,7 @@ const ImageGallery = () => {
                     src={image.src}
                     alt={image.alt}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    priority={true}
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -186,6 +190,7 @@ const ImageGallery = () => {
                   src={image.src}
                   alt={image.alt}
                   className="w-full h-full object-cover"
+                  priority={true}
                 />
               </button>
             );

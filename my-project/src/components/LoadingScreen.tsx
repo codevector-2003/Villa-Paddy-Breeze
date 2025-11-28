@@ -3,37 +3,55 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface LoadingScreenProps {
   onComplete: () => void;
+  heroImageLoaded: boolean;
 }
 
-const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
+const LoadingScreen = ({ onComplete, heroImageLoaded }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
+
+  // Minimum loading time of 2 seconds for smooth experience
+  useEffect(() => {
+    const minTimer = setTimeout(() => {
+      setMinTimeElapsed(true);
+    }, 2000);
+
+    return () => clearTimeout(minTimer);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
+        // Progress faster if image is loaded, slower otherwise
+        const increment = heroImageLoaded ? 3 : 1.5;
+
+        if (prev >= 100 && heroImageLoaded && minTimeElapsed) {
           clearInterval(timer);
           setTimeout(() => {
             setIsComplete(true);
-            setTimeout(onComplete, 800);
-          }, 500);
+            setTimeout(onComplete, 1000);
+          }, 600);
           return 100;
         }
-        return prev + 2;
+        // Cap at 95% until image loads
+        if (!heroImageLoaded && prev >= 95) {
+          return 95;
+        }
+        return Math.min(prev + increment, 100);
       });
-    }, 50);
+    }, 60);
 
     return () => clearInterval(timer);
-  }, [onComplete]);
+  }, [onComplete, heroImageLoaded, minTimeElapsed]);
 
   return (
     <AnimatePresence>
       {!isComplete && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
           className="fixed inset-0 z-50 bg-gradient-to-br from-stone-50 via-amber-50 to-cyan-50 flex items-center justify-center"
         >
           {/* Animated Background */}
@@ -70,7 +88,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             <motion.div
               initial={{ scale: 0, rotate: -180, opacity: 0 }}
               animate={{ scale: 1, rotate: 0, opacity: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
+              transition={{ duration: 1.2, ease: [0.34, 1.56, 0.64, 1] }}
               className="mb-8"
             >
               <div className="relative w-48 h-48 mx-auto flex items-center justify-center">
@@ -78,33 +96,35 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                 <motion.div
                   className="absolute inset-0 border-4 border-amber-300/30 rounded-full"
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                 />
 
                 {/* Inner Ring */}
                 <motion.div
                   className="absolute inset-2 border-4 border-stone-400/50 rounded-full"
                   animate={{ rotate: -360 }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                 />
 
                 {/* Logo */}
                 <motion.div
                   className="relative z-10"
                   animate={{
-                    scale: [1, 1.05, 1],
-                    opacity: [0.9, 1, 0.9]
+                    scale: [1, 1.08, 1],
+                    opacity: [0.95, 1, 0.95]
                   }}
                   transition={{
-                    duration: 2,
+                    duration: 3,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
+                    repeatType: "reverse"
                   }}
                 >
                   <img
                     src="/Villa Paddy Breez_Final Logo.png"
                     alt="Villa Paddy Breeze Logo"
                     className="w-32 h-32 object-contain"
+                    style={{ willChange: 'transform' }}
                   />
                 </motion.div>
               </div>

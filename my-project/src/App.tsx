@@ -17,6 +17,20 @@ import Footer from './components/Footer';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
+
+  // Preload hero image
+  useEffect(() => {
+    const img = new Image();
+    img.src = '/Final-webp/DRW07768.webp';
+    img.onload = () => {
+      setHeroImageLoaded(true);
+    };
+    img.onerror = () => {
+      // Even if image fails, don't block loading indefinitely
+      setTimeout(() => setHeroImageLoaded(true), 2000);
+    };
+  }, []);
 
   // Smooth scrolling setup
   useEffect(() => {
@@ -30,7 +44,7 @@ export default function App() {
   };
 
   if (isLoading) {
-    return <LoadingScreen onComplete={handleLoadingComplete} />;
+    return <LoadingScreen onComplete={handleLoadingComplete} heroImageLoaded={heroImageLoaded} />;
   }
 
   return (

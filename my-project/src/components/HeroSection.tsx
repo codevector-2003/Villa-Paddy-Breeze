@@ -21,9 +21,10 @@ const HeroSection = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/50 to-stone-800/70 z-10"></div>
         <ImageWithFallback
-          src="/Final/DRW07768.jpg"
+          src="/Final-webp/DRW07768.webp"
           alt="Villa Paddy Breeze"
           className="w-full h-full object-cover"
+          priority={true}
         />
       </motion.div>
 
