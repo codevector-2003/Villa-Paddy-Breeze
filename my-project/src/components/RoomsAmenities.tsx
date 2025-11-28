@@ -10,16 +10,17 @@ const RoomsAmenities = () => {
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
 
   const premiumSuiteGallery = [
-    "/Final/DRW07494.jpg",
-    "/Final/DRW07509.jpg",
-    "/Final/DRW07546.jpg",
-    "/Final/DRW07625.jpg",
-    "/Final/DRW07646.jpg",
-    "/Final/DRW07703.jpg",
-    "/Final/DRW07599.jpg",
-    "/Final/DRW07704.jpg",
-    "/Final/DRW07723.jpg",
-    "/Final/DRW07731.jpg"
+    "/Final-webp/DRW07494.webp",
+    "/Final-webp/DRW07509.webp",
+    "/Final-webp/DRW07546.webp",
+    "/Final-webp/DRW07625.webp",
+    "/Final-webp/DRW07646.webp",
+    "/Final-webp/DRW07703.webp",
+    "/Final-webp/DRW07599.webp",
+    "/Final-webp/DRW07704.webp",
+    "/Final-webp/DRW07723.webp",
+    "/Final-webp/DRW07731.webp",
+    "/Final-webp/DRW07627.webp"
   ];
 
   const premiumSuiteFeatures = [
@@ -68,7 +69,7 @@ const RoomsAmenities = () => {
     },
     {
       title: "Paddy View Room",
-      image: "https://images.unsplash.com/photo-1650656184425-62806eaeac4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMGxpdmluZyUyMHJvb218ZW58MXx8fHwxNzU5Mzg1Nzk4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/Final-webp/DRW07714.webp",
       features: ["Queen Bed", "Rice Field Views", "Reading Nook", "Spa Bathroom"],
       description: "Experience tranquility overlooking emerald rice paddies with traditional design elements and modern comfort.",
       comingSoon: false
@@ -118,7 +119,7 @@ const RoomsAmenities = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative h-96 perspective-1000"
+              className={`relative h-96 perspective-1000 ${room.comingSoon ? 'opacity-75' : ''}`}
               onMouseEnter={() => setFlippedCard(index)}
               onMouseLeave={() => setFlippedCard(null)}
               onClick={() => !room.comingSoon && index === 1 && setSelectedRoom(1)}
@@ -130,9 +131,9 @@ const RoomsAmenities = () => {
                   <ImageWithFallback
                     src={room.image}
                     alt={room.title}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover transition-all duration-300 ${room.comingSoon ? 'blur-sm' : ''}`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent ${room.comingSoon ? 'backdrop-blur-sm' : ''}`} />
                   {room.comingSoon && (
                     <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                       Coming Soon
