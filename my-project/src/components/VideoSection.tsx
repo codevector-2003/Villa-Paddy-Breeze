@@ -1,10 +1,39 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Play } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Play, Pause, Volume2, VolumeX, Maximize } from 'lucide-react';
 
 const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const toggleFullscreen = () => {
+    if (videoRef.current) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        videoRef.current.requestFullscreen();
+      }
+    }
+  };
 
   return (
     <section className="py-20 bg-gradient-to-b from-[#f7f3ee] via-[#e8e4d9] to-[#d8ebe8]">
@@ -16,8 +45,8 @@ const VideoSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-800 to-teal-600 bg-clip-text text-transparent">
-            Experience VillPaddy Breeze
+          <h2 className="text-4xl md:text-5xl mb-4 bg-linear-to-r from-blue-800 to-teal-600 bg-clip-text text-transparent">
+            Experience Villa Paddy Breeze
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             Take a virtual tour and immerse yourself in the tranquility of our luxury villa
@@ -29,19 +58,24 @@ const VideoSection = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative rounded-2xl overflow-hidden shadow-2xl max-w-4xl mx-auto"
+          className="relative rounded-2xl overflow-hidden shadow-2xl max-w-md mx-auto"
         >
-          {!isPlaying ? (
-            // Video Thumbnail with Play Button
-            <div className="relative">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1689937537536-d97423eef922?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvY2VhbiUyMHN1bnNldCUyMHRyb3BpY2FsfGVufDF8fHx8MTc1OTMyNzEzOHww&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Villa video preview"
-                className="w-full h-96 md:h-[500px] object-cover"
-              />
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+          <div className="relative bg-black">
+            <video
+              ref={videoRef}
+              className="w-full h-[70vh] max-h-[600px] object-contain"
+              src="/Video Project.mp4"
+              preload="none"
+              playsInline
+              onClick={togglePlay}
+              onEnded={() => setIsPlaying(false)}
+            />
+
+            {/* Play/Pause Overlay */}
+            {!isPlaying && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                 <motion.button
-                  onClick={() => setIsPlaying(true)}
+                  onClick={togglePlay}
                   className="bg-white/20 backdrop-blur-sm rounded-full p-6 hover:bg-white/30 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -61,33 +95,43 @@ const VideoSection = () => {
                   <Play size={48} className="text-white ml-1" />
                 </motion.button>
               </div>
-              <div className="absolute bottom-4 left-4 text-white">
-                <h3 className="text-xl mb-1">Virtual Villa Tour</h3>
-                <p className="text-sm opacity-80">Click to play</p>
-              </div>
-            </div>
-          ) : (
-            // Embedded Video (simulated with image for demo)
-            <div className="relative">
-              <div className="w-full h-96 md:h-[500px] bg-black flex items-center justify-center">
-                <div className="text-white text-center">
-                  <div className="mb-4">
-                    <div className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin mx-auto"></div>
-                  </div>
-                  <p>Video would be embedded here</p>
-                  <p className="text-sm text-gray-300 mt-2">
-                    In a real implementation, this would be a YouTube/Vimeo embed
-                  </p>
+            )}
+
+            {/* Video Controls */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
                   <button
-                    onClick={() => setIsPlaying(false)}
-                    className="mt-4 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors"
+                    onClick={togglePlay}
+                    className="text-white hover:text-gray-300 transition-colors p-2"
+                    aria-label={isPlaying ? "Pause" : "Play"}
                   >
-                    Back to Preview
+                    {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+                  </button>
+                  <button
+                    onClick={toggleMute}
+                    className="text-white hover:text-gray-300 transition-colors p-2"
+                    aria-label={isMuted ? "Unmute" : "Mute"}
+                  >
+                    {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
                   </button>
                 </div>
+                <button
+                  onClick={toggleFullscreen}
+                  className="text-white hover:text-gray-300 transition-colors p-2"
+                  aria-label="Fullscreen"
+                >
+                  <Maximize size={24} />
+                </button>
               </div>
             </div>
-          )}
+
+            {/* Title Overlay */}
+            <div className="absolute top-4 left-4 text-white">
+              <h3 className="text-xl mb-1 drop-shadow-lg">Villa Tour</h3>
+              <p className="text-sm opacity-80 drop-shadow-lg">Click to {isPlaying ? 'pause' : 'play'}</p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Video Features */}
