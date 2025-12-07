@@ -364,7 +364,7 @@ const ContactBooking = () => {
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 flex-wrap">
             {/* Booking.com */}
             <motion.a
-              href="https://www.booking.com"
+              href="https://www.booking.com/hotel/lk/villa-paddy-breeze.html"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
@@ -380,7 +380,7 @@ const ContactBooking = () => {
 
             {/* Agoda */}
             <motion.a
-              href="https://www.agoda.com"
+              href="https://www.agoda.com/villa-paddy-breeze/hotel/galle-lk.html"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
@@ -394,9 +394,9 @@ const ContactBooking = () => {
               />
             </motion.a>
 
-            {/* GetYourGuide */}
+            {/* Pngwing Partner */}
             <motion.a
-              href="https://www.getyourguide.com"
+              href="https://www.airbnb.com/rooms/1565307112157937075?check_in=2025-12-10&check_out=2025-12-11&search_mode=regular_search&source_impression_id=p3_1764992251_P3eppuC3B-xua7uQ&previous_page_section_name=1000&federated_search_id=640efc98-98f2-48e1-b1cf-0b00c881a62f"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
@@ -404,8 +404,8 @@ const ContactBooking = () => {
               className="bg-white rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 w-40 h-24 flex items-center justify-center"
             >
               <img
-                src="/get-your-guide-seeklogo.png"
-                alt="GetYourGuide"
+                src="/pngwing.com.png"
+                alt="Pngwing Partner"
                 className="max-w-full max-h-full object-contain"
               />
             </motion.a>
