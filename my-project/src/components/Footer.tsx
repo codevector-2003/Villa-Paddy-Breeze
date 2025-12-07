@@ -16,9 +16,9 @@ const TikTokIcon = ({ size = 20 }: { size?: number }) => (
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Instagram, href: "#", color: "hover:text-pink-400" },
-    { icon: Facebook, href: "#", color: "hover:text-blue-400" },
-    { icon: TikTokIcon, href: "#", color: "hover:text-white" }
+    { icon: Instagram, href: "https://www.instagram.com/villapaddybreeze/", color: "hover:text-pink-400" },
+    { icon: Facebook, href: "https://www.facebook.com/people/Villa-Paddy-Breeze/61584144183603/", color: "hover:text-blue-400" },
+    { icon: TikTokIcon, href: "https://www.tiktok.com/@villapaddybreeze", color: "hover:text-white" }
   ];
 
   const footerLinks = [
