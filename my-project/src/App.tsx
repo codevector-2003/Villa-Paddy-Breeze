@@ -8,9 +8,9 @@ import ImageGallery from './components/ImageGallery';
 import VideoSection from './components/VideoSection';
 import RoomsAmenities from './components/RoomsAmenities';
 import ExperiencesSection from './components/ExperiencesSection';
-import VirtualTour from './components/VirtualTour';
+// import VirtualTour from './components/VirtualTour';
 import LocationSection from './components/LocationSection';
-import TestimonialsSection from './components/TestimonialsSection';
+// import TestimonialsSection from './components/TestimonialsSection';
 import ContactBooking from './components/ContactBooking';
 import Footer from './components/Footer';
 
