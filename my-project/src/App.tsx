@@ -74,9 +74,9 @@ export default function App() {
         <VideoSection />
         <RoomsAmenities />
         <ExperiencesSection />
-        <VirtualTour />
+        {/* <VirtualTour /> */}
         <LocationSection />
-        <TestimonialsSection />
+        {/* <TestimonialsSection /> */}
         <ContactBooking />
       </main>
 
