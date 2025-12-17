@@ -24,8 +24,8 @@ const tourLocations: TourLocation[] = [
     id: 'exterior',
     name: 'Villa Exterior',
     description: 'Breathtaking panoramic view of VillPaddy Breeze surrounded by lush paddy fields and ocean views',
-    image: 'https://images.unsplash.com/photo-1630008483888-0c00f669ec4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMHBhbm9yYW1pYyUyMHZpZXd8ZW58MXx8fHwxNzU5Mzg2NDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    panoramic: 'https://images.unsplash.com/photo-1630008483888-0c00f669ec4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMHBhbm9yYW1pYyUyMHZpZXd8ZW58MXx8fHwxNzU5Mzg2NDE3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'paddyview.jpg',
+    panoramic: 'paddyview.jpg',
     icon: Home,
     hotspots: [
       { x: 30, y: 60, targetId: 'living', label: 'Enter Living Room' },
@@ -36,8 +36,8 @@ const tourLocations: TourLocation[] = [
     id: 'living',
     name: 'Living Room',
     description: 'Spacious living area with modern furnishings and stunning ocean views',
-    image: 'https://images.unsplash.com/photo-1651108066109-15a97d54ced3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMGludGVyaW9yJTIwbGl2aW5nJTIwcm9vbXxlbnwxfHx8fDE3NTkzODY0MjJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    panoramic: 'https://images.unsplash.com/photo-1651108066109-15a97d54ced3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMGludGVyaW9yJTIwbGl2aW5nJTIwcm9vbXxlbnwxfHx8fDE3NTkzODY0MjJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'livingroom.jpg',
+    panoramic: 'livingroom.jpg',
     icon: Waves,
     hotspots: [
       { x: 20, y: 70, targetId: 'bedroom', label: 'Bedroom' },
@@ -47,10 +47,10 @@ const tourLocations: TourLocation[] = [
   },
   {
     id: 'bedroom',
-    name: 'Master Bedroom',
+    name: 'Kitchen',
     description: 'Luxurious master bedroom with private balcony and ocean breeze',
-    image: 'https://images.unsplash.com/photo-1668512624222-2e375314be39?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMGJlZHJvb20lMjBpbnRlcmlvcnxlbnwxfHx8fDE3NTkzODY0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    panoramic: 'https://images.unsplash.com/photo-1668512624222-2e375314be39?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMGJlZHJvb20lMjBpbnRlcmlvcnxlbnwxfHx8fDE3NTkzODY0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'kitchen.jpg',
+    panoramic: 'kitchen.jpg',
     icon: Bed,
     hotspots: [
       { x: 60, y: 75, targetId: 'bathroom', label: 'En-suite Bathroom' },
@@ -62,8 +62,8 @@ const tourLocations: TourLocation[] = [
     id: 'bathroom',
     name: 'Spa Bathroom',
     description: 'Luxurious spa-style bathroom with soaking tub and rain shower',
-    image: 'https://images.unsplash.com/photo-1749766878223-6ceae855b28b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBiYXRocm9vbSUyMHNwYSUyMGludGVyaW9yfGVufDF8fHx8MTc1OTM4NjQyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    panoramic: 'https://images.unsplash.com/photo-1749766878223-6ceae855b28b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBiYXRocm9vbSUyMHNwYSUyMGludGVyaW9yfGVufDF8fHx8MTc1OTM4NjQyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'bathroom.jpg',
+    panoramic: 'bathroom.jpg',
     icon: Bath,
     hotspots: [
       { x: 30, y: 90, targetId: 'bedroom', label: 'Back to Bedroom' },
@@ -88,8 +88,22 @@ function PanoramicViewer({ image, hotspots = [], onHotspotClick }: PanoramicView
   const [isRotating, setIsRotating] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [lastX, setLastX] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number | undefined>(undefined);
+
+  // Update container width on mount and resize
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
   // Memoized rotation function to prevent excessive re-renders
   const rotateAnimation = useCallback((_timestamp?: number) => {
@@ -136,7 +150,7 @@ function PanoramicViewer({ image, hotspots = [], onHotspotClick }: PanoramicView
   }, [isRotating]);
 
   return (
-    <div className="relative w-full h-96 md:h-[500px] overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-teal-50">
+    <div className="relative w-full h-[350px] md:h-[450px] overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-teal-50">
       <div
         ref={containerRef}
         className="relative w-full h-full cursor-grab active:cursor-grabbing select-none"
@@ -149,9 +163,9 @@ function PanoramicViewer({ image, hotspots = [], onHotspotClick }: PanoramicView
           className="absolute inset-0 bg-cover bg-center will-change-transform"
           style={{
             backgroundImage: `url(${image})`,
-            transform: `translateX(${-rotation * 2}px)`,
+            transform: `translateX(${-(rotation / 360) * containerWidth}px)`,
             width: '200%',
-            backgroundSize: '200% 100%'
+            backgroundSize: 'cover'
           }}
         />
 
